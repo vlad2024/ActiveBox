@@ -1,0 +1,784 @@
+body{
+    margin: 0;
+    
+    font-family: 'Raleway', sans-serif; 
+    font-size: 14px;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased; /*сгладит шрифты*/
+    background-color: #fff;
+}
+
+*,
+:before,
+:after{
+  box-sizing: border-box; /* это алгоритм подсчета размера блоков с учетом педингов и границ(надо бязательно) */
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0; /*у всех заголовках по умолчанию есть мерджены сверху и снизу, их надо убирать*/
+}
+
+p{
+    margin: 0 0 10px; /*у абзацов тоже есть по умолчанию марджены сверху и снизу, мы убрали сверху, а снизу оставили*/
+}
+
+/*Container
+====================*/
+
+.container{
+    width: 100%;
+    max-width: 1200px; /*контент у нас занимает 1170рх, но мы добавили 30 пикселей по бокам чтобы контент поом не прилягал, и эти отступы идут в средину*/
+    margin: 0 auto; /*Выровляни наш контейнер по центру*/
+    padding: 0 15px;
+}
+
+/*Header
+====================*/  /**/
+
+.header{
+    width: 100%;
+    height: 100px; 
+    position: absolute;
+    top: 0;
+    left: 0; 
+    z-index: 1000;
+    
+}
+
+.header.fixed{
+    height: auto;
+    position: fixed;
+    background-color: #31344e;
+}
+
+.header.fixed .header_inner{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 0;
+}
+
+.header_inner{
+    display: flex;
+    justify-content: space-between; /* спейс битвин-место между ними */
+    
+    padding: 35px 0; /* отступ сверху и снизу */
+    align-items: center;/*все элементы будут ровно по центру блока, не зависимо от их высоты*/
+    border-bottom: 1px solid #515369;
+}
+
+
+
+/*Nav
+====================*/  /**/
+
+.nav{
+    display: flex;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav_link{
+    margin-left: 50px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.75;
+    
+    transition: opacity 0.1s;
+}
+
+.nav_link:first-child{
+    margin-left: 0;
+}
+
+.nav_link:hover{
+    opacity: 1;
+}
+
+
+/*Intro
+====================*/  /**/
+
+.intro{
+    height: 750px; 
+    padding-top: 100px; /*чтобы наш интро блок начинался сразу после шапки*/
+    display: flex;
+    flex-direction: column; /*каждый новый элемент в блоке интро будет начинаться с новой строки(унас он только один)*/   
+    justify-content: center; /*выровнять этот один элемент по центру*/ 
+    
+    background: #31344e url("../images/intro-bg.jpg") center no-repeat;
+    background-size: cover;
+    
+}
+
+.intro_inner{
+    width: 100%;
+    max-width: 970px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.intro_title{
+    margin: 0 0 30px; /*отступ снизу*/
+    font-family: 'Open Sans', sans-serif;
+    font-size: 65px;
+    line-height: 71px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+}
+
+.intro_subtitle{
+    font-size: 22px;
+    color: #fff;
+    line-height: 33px;
+    font-weight: 400;
+    margin-bottom: 60px;
+}
+
+/*Button
+====================*/  /**/
+
+.btn{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 40px; 
+    border-radius: 3px; /*закруглили края кнопки*/
+    font-family: 'Raleway', sans-serif; 
+    border: 0; /*убрали границу*/
+    cursor: pointer;/*чтобы менялся курсор*/
+    
+    transition: background 0.1s linear;
+}
+
+.btn--red{
+    background-color: #e84545;
+}
+
+.btn--red:hover{
+    background-color: #dd3434;
+}
+
+.btn--long{
+    min-width: 280px;
+    text-align: center;
+}
+
+/*Features
+====================*/  /**/
+
+.features{
+    display: flex; /*разрешаем переность элементы на тновую строку если они не помещаются в контейнер*/
+    flex-wrap: wrap; 
+    margin: 95px 0;
+}
+
+.features_item{
+    width: 33.33333%;
+    
+    text-align: center;
+    padding: 0 40px;
+    margin: 25px 0;
+}
+
+.features_icon{
+    margin-bottom: 25px;
+}
+
+.features_title{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #2d3033;
+}
+
+.features_text{
+    font-size: 14px;
+    color: #6c7279;
+    line-height: 33px;
+}
+
+
+/*Works
+====================*/  /**/
+
+.works{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.works_item{
+    width: 25%;
+    position: relative;
+    overflow: hidden; /*у нас фотография вылазила, с помощью этого элемента так как она позиционируется относительно айтема, она не будет выходить за его граници*/
+    height: 350px;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+.works_item:hover .works_content{
+    opacity: 1;
+} 
+
+.works_photo{
+    min-width: 100%;
+    position: absolute;
+    z-index: 1;
+    /*так как фотография больше, для того чтобы она совсем ровно выровнялась, надо выравнивать по осям xyz*/
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.works_content{ 
+    opacity: 0; /*чтобы пропал блок*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /*устанавливает блок по центру от родителя */
+    text-align: center;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(232, 69, 69, 0.9); /*сразу устанавливаем прозрачность*/
+    
+    transition: opacity 0.2s linear;
+}
+
+.works_title{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.works_text{
+    font-size: 14px;
+    color: #fff;
+}
+
+
+/*Team
+====================*/  /**/
+
+.team{
+    margin: 100px 0 70px; /*сверху 100, по бокам 0, снизу 70 + у нас в айтема 30 = 100*/
+}
+
+.team_inner{
+    display: flex;
+    flex-wrap: wrap; /*чтобы 5 член смещался вниз*/
+    margin: 0 -15px; /*так как у нас изначально контейнер на 30рх больше чем надо, которые мы компенсировали падингом, в начале при указывании границ контейнера, тут у нас отрицательный мерджин чтобы оно заходило на тот падинг, а картинки все равно не будут в плотную так как у них тоже падинг есть*/
+}
+
+.team_item{
+    width: 25%;
+    padding: 0 15px;
+    margin-bottom: 30px; /*чтобы 5 член команды, когда смещался вниз, был отступ*/
+}
+
+.team_photo{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.team_name{
+    font-size: 22px;
+    color: #2d3033;
+    margin-bottom: 8px;
+}
+
+.team_prof{
+    font-size: 13px;
+    color: #e84545;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.team_text{
+    line-height: 21px;
+    font-size: 14px;
+    color: #6c7279;
+    margin-bottom: 20px;
+}
+
+
+/*Social
+====================*/  /**/
+
+.social{
+    display: flex;
+}
+
+.social_item{
+    /*вертикаль ( --- ), горизонталь ( | )*/
+    display: flex;
+    justify-content: center; /*выровняли по вертикали */
+    align-items: center; /*выровняли по горизонтали */
+    height: 40px;
+    width: 40px;
+    border: 1px solid #e8ecee;
+    background-color: #fff;
+    margin-right: 4px;
+    
+    transition: background 0.1s linear;
+}
+
+.social_item:hover{
+    background-color: #c6cacc;
+}
+
+.social_icon{
+    display: block;
+    fill: #c6cacc; /*когда мы работаем с svg мы используем свойство fill чтобы поменять фоновый цвет иконки*/
+    height: 18px;
+    
+    transition: fill 0.1s linear;
+}
+
+.social_item:hover .social_icon{
+    fill: #e84545;
+}
+
+.social--footer{
+    justify-content: center;
+}
+
+.social--footer .social_item{/*если соиал айтем находится в сошиал футере тогда мы меняем*/
+    background-color: transparent;/*цвет прозрачный*/
+    border-width: 2px solid #fff;
+    border-radius: 2px;
+}
+
+.social--footer .social_item:hover{
+    background-color: #fff; /*при наводе белый*/
+}
+
+.social--footer .social_icon{
+    fill: #fff;
+}
+
+/*Reviews
+====================*/  /**/
+
+.reviews{
+    overflow: hidden;
+    background-color: #53354a;
+}
+
+.reviewsSlider{
+   height: 500px; /*указали  высоту и оверфлоу хиден для того, чтобы не мелькал второй отзыв при обновлении страницы */
+   overflow: hidden;
+}
+
+.reviewsSlider .slick-initialized{ /*при загрузке reviewsSlider добавляется еще класс slick-initialized и мы перезаписываем высоту, это для того чтобы нормально потом отображались элементы и наши стили не сбивались*/
+    height: auto;
+}
+
+.reviews_item{
+    display: flex;
+    flex-wrap: wrap; /*чтобы отзыв переносился на вторую строку когда будет под телефон*/
+    overflow: hidden;
+}
+
+.reviews_photo{
+    width: 50%;
+    height: 500px;
+    position: relative;
+}
+
+.reviews_img{
+    position: absolute;
+    top: 50%; /*так как у нас оверфлоу хиден, если картинка будет больше, то она будет обрезаться и эти два параметра сдлеают, чтобы оно обрезало нормально*/
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 1;
+}
+
+.reviews_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    width: 50%;
+    padding-left: 80px;
+    
+}
+
+.reviews_text{
+    font-family: 'Cardo', sans-serif;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 42px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.reviews_author{
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+/*Download
+====================*/  /**/
+
+.download{
+    margin: 90px 0;
+    text-align: center; 
+}
+
+.download_title{
+    font-size: 28px;
+    color: #2d3033;
+    font-weight: 400;
+    margin-bottom: 5px;
+    
+}
+
+.download_text{
+    font-size: 13px;
+    color: #2d3033;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+
+/*Footer
+====================*/  /**/
+
+.footer{
+    background-color: #3a3e64;
+}
+
+.footer_inner{
+    padding: 70px 0;
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.footer_block{
+    width: 33.33333%;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.footer_title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.footer_address{
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: normal; /*у тега адрес по умолчанию италик*/
+}
+
+.footer_text{
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer_copyright{
+    background-color: #313454;
+    padding: 20px 0;
+}
+
+.coryright_text{
+    text-align: center;
+    font-size: 14px;
+    color: #808080;
+    line-height: 22.5px;
+}
+
+.coryright_text span{
+    color: #fff;
+}
+
+/*Burger
+====================*/  /**/
+
+.burger{
+    display: none;
+    background: none; /*убрали фон в кнопки*/
+    border: 0;
+    cursor: pointer;
+    padding: 9px 2px;
+}
+
+.burger_item{
+    display: block;
+    width: 30px;
+    height: 3px;
+    
+    background-color: #fff;
+    
+    font-size: 0;
+    color: transparent;/*прозрачн цвет нашего слова Menu*/
+    position: relative;
+}
+
+.burger_item:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    z-index: 1; 
+    background-color: #fff;
+}
+
+.burger_item:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: -8px;
+    z-index: 1; 
+    background-color: #fff;
+}
+
+/*Slick dots
+====================*/  /**/
+
+.slick-dots{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0 0 10px;
+    list-style: none;
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.slick-dots li{
+    margin: 0 3px;
+}
+
+.slick-dots button{
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    font-size: 0;
+    color: transparent;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.slick-dots button:focus{
+    outline: 0;
+}
+
+.slick-dots .slick-active button{
+    opacity: 1;
+}
+
+/*Media 1300
+===========================================*/  /**/
+
+@media(max-width: 1300px){
+    /*Works======================*/
+    .works_item{
+       width: 50%; 
+    }
+}
+
+
+/*Media 991
+===========================================*/  /**/
+
+@media(max-width: 991px){
+   /*Nav======================*/ 
+    .nav{
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background-color: #31344e;
+        text-align: right;
+        position: absolute;
+        top: 100%;
+        right: 0;
+    }
+    
+    .nav.show{
+        display: flex; /*флекс потому что мы там используем flex-direction: column*/
+    }
+    
+    .nav_link{
+        padding: 9px 15px;
+    }
+    
+    .nav{
+        margin-top: -1px; /*убрал полоску разделяющую header_inner и nav*/
+    }
+    
+    /*Burger==================*/
+    .burger{
+        display: block;
+    }
+    
+    /*Intro===================*/
+    .intro_title{
+        font-size: 40px;
+    }
+    
+    /*Features================*/
+    .features_item{
+        width: 50%;
+    }
+    
+    /*Team================*/
+    .team_item{
+        width: 50%;
+        text-align: center;
+        
+    }
+    
+    .team_photo{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .social{
+        justify-content: center;
+    }
+    
+    /*Reviews======================*/
+    .reviews_photo{
+        width: 100%;
+        overflow: hidden;
+        margin: 15px 0 40px;; 
+    }
+    
+    .reviews_content{
+        width: 100%;  
+        padding-left: 0;
+        padding-bottom: 40px;
+    }
+}
+
+/*Media 767
+===========================================*/  /**/
+
+@media(max-width: 767px){
+    /*Intro===================*/
+    .intro{
+        height: auto;
+        padding-top: 130px;
+        padding-bottom: 30px;
+    }
+    
+    .intro_title{
+        font-size: 30px;
+    }
+    
+    .intro_subtitle{
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    
+    /*Features===================*/
+    .features{
+        margin: 40px 0;
+    }
+    
+    .features_item{
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /*Works======================*/
+    .works_item{
+       width: 100%;  
+       height: 300px;
+    }
+    
+    /*Team================*/
+    .team_item{
+        width: 100%;
+        
+    }
+    
+    .team{
+        margin: 60px 0 30px;
+    }
+    
+    
+    /*Reviews======================*/
+    .reviews_text{
+        font-size: 25px;
+    }
+    
+    /*Btn======================*/
+    .btn--long{
+        min-width: 260px;
+    }
+    
+    /*Download======================*/
+    .download{
+        margin: 50px 0;
+    }
+    
+    .download_title{
+        font-size: 24px;
+    }
+    
+    /*Footer======================*/
+    
+    .footer_block{
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .footer_inner{
+        padding: 30px 0;
+    }
+    
+    .footer_block:last-shild{
+        margin-bottom: 0;
+    }
+}
+
+/*Media 441
+===========================================*/  /**/
+
+@media(max-width: 441px){
+    /*Reviews======================*/
+    .reviews_img{
+        right: -100px;
+    }
+}
+
+
+
+
+
